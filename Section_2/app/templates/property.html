@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5">Property Form</h1>
+
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <div class="alert alert-success">
+                    {{ messages[0] }}
+                </div>
+            {% endif %}
+        {% endwith %}
+
+        <form method="POST" action="{{ url_for('property') }}">
+            {{ form.hidden_tag() }}
+
+            <div class="form-group">
+                <label for="address">Address</label>
+                {{ form.address(class="form-control", id="address") }}
+                {% if form.address.errors %}
+                    <small class="text-danger">{{ form.address.errors[0] }}</small>
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                <label for="start_date">Start Date</label>
+                {{ form.start_date(class="form-control", id="start_date") }}
+                {% if form.start_date.errors %}
+                    <small class="text-danger">{{ form.start_date.errors[0] }}</small>
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                <label for="duration">Duration (in months)</label>
+                {{ form.duration(class="form-control", id="duration") }}
+                {% if form.duration.errors %}
+                    <small class="text-danger">{{ form.duration.errors[0] }}</small>
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                <label for="rent">Rent</label>
+                {{ form.rent(class="form-control", id="rent") }}
+                {% if form.rent.errors %}
+                    <small class="text-danger">{{ form.rent.errors[0] }}</small>
+                {% endif %}
+            </div>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
